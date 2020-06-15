@@ -16,7 +16,7 @@ void deployToWas(String server){
 }
 
 @NonCPS
-void getServers(String path) {
+def getServers(String path) {
     def jsonSlurper = new JsonSlurper()
     def file = new File(path)
     dataval = jsonSlurper.parse(file)
