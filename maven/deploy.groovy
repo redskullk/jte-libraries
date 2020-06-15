@@ -26,7 +26,9 @@ void call(app_env){
         run("ls")
         node {
             sh "ls"
+            cat "servers.json"
         }
+        
         app_env.servers.each{ server ->
             println "deploying to ${server}"
             def name = "tomcat"
