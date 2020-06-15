@@ -24,7 +24,7 @@ void call(app_env){
         println "Deploying to ${app_env.servers.size()} servers !!!"
         node {
             sh "ls"
-            cat "servers.json"
+            sh "cat servers.json"
         }
         
         app_env.servers.each{ server ->
