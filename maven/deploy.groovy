@@ -4,7 +4,7 @@ import hudson.model.*
 def getServers(path){
     def jsonSlurper = new JsonSlurper()
     try{
-        data = jsonSlurper.parse(new File("${path}"))
+        def data = jsonSlurper.parse(new File("${path}"))
         println "${data}"
     }
     catch(Exception e){
@@ -20,10 +20,10 @@ def run(String cmd){
 }
 
 void call(app_env){
-    run "pwd"
+    run("pwd")
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
-        run "ls"
+        run("ls")
         def data = getServers(app_env.serverInfo)
         println "${data}"
         app_env.servers.each{ server ->
