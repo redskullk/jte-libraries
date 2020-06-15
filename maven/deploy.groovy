@@ -1,4 +1,4 @@
-import groovy.json.JsonSlurper
+import groovy.json.JsonSlurperClassic
 import java.io.File
 
 
@@ -17,18 +17,16 @@ void deployToWas(String server){
 
 @NonCPS
 def getServers(String path) {
-    def jsonSlurper = new JsonSlurper()
+    def jsonSlurper = new JsonSlurperClassic()
     def file = new File(path)
     dataval = jsonSlurper.parse(file)
-    //dataval = file.text
-    
     return dataval
 }
 
 void call(app_env){
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
-        def data = readJSON file: "${app_env.serverInfo}"
+        def data =  getServers "${app_env.serverInfo}"
         println "${data}"
         app_env.servers.each{ server ->
             println "deploying to ${server}"
