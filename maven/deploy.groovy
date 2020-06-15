@@ -23,13 +23,9 @@ void call(app_env){
         try {
             def jsonSlurper = new JsonSlurper()
             def file = new File(app_env.serverInfo)
-            dataval = jsonSlurper.parse(file)
-            println "${dataval}"
-     
-        } catch(Exception e) {
-            println("Exception: ${e}")
-        }
-        app_env.servers.each{ server ->
+            //dataval = jsonSlurper.parse(file)
+            println "${file.text}"
+            app_env.servers.each{ server ->
             println "deploying to ${server}"
             
             def name = "tomcat"
@@ -40,6 +36,11 @@ void call(app_env){
               deployToWas(server)
             }
         }
+     
+        } catch(Exception e) {
+            println("Exception: ${e}")
+        }
+        
     }
 }
 
