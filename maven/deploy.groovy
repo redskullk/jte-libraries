@@ -1,7 +1,7 @@
 import groovy.json.JsonSlurper
 import hudson.model.*
 
-def getServers(String path){
+def getServers(path){
     def jsonSlurper = new JsonSlurper()
     try{
         data = jsonSlurper.parse(new File("${path}"))
@@ -45,5 +45,5 @@ void deployToTomcat(String server){
 }
 
 void deployToWas(String server){
-  println "deploying to tomcat server"
+  println "deploying to WAS server"
 }
