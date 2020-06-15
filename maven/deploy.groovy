@@ -17,14 +17,15 @@ void deployToWas(String server){
 
 @NonCPS
 def getServers(String path) {
-    //def jsonSlurper = new JsonSlurper()
+    def jsonSlurper = new JsonSlurper()
     def file = new File(path)
-    //dataval = jsonSlurper.parse(file)
-    dataval = file.text
+    dataval = jsonSlurper.parse(file)
+    //dataval = file.text
     println "${dataval}"
     return dataval
 }
 
+@CPS
 void call(app_env){
     run("pwd")
     def x = getServers(app_env.serverInfo)
