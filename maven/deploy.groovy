@@ -22,8 +22,11 @@ void call(app_env){
     run("pwd")
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
-        run "ls -l"
-        run("ls -R")
+        run "ls"
+        run("ls")
+        node {
+            sh "ls"
+        }
         app_env.servers.each{ server ->
             println "deploying to ${server}"
             def name = "tomcat"
