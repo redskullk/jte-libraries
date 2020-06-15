@@ -25,7 +25,7 @@ def getServers(String path) {
     return dataval
 }
 
-@CPS
+@NonCPS
 void call(app_env){
     run("pwd")
     def x = getServers(app_env.serverInfo)
