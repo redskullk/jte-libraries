@@ -22,8 +22,6 @@ void call(app_env){
     run("pwd")
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
-        run "ls"
-        run("ls")
         node {
             sh "ls"
             cat "servers.json"
