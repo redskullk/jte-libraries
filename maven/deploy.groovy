@@ -25,10 +25,7 @@ def getServers(String path) {
     return dataval
 }
 
-@NonCPS
-void call(app_env){
-    run("pwd")
-    def x = getServers(app_env.serverInfo)
+void next(app_env){
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
         run("ls")
@@ -43,6 +40,13 @@ void call(app_env){
             }
         }
     }
+}
+
+@NonCPS
+void call(app_env){
+    run("pwd")
+    def x = getServers(app_env.serverInfo)
+    next(app_env)
 }
 
 
