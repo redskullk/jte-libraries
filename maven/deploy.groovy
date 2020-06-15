@@ -30,10 +30,8 @@ void call(app_env){
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
         run("ls")
-        try {
-            app_env.servers.each{ server ->
+        app_env.servers.each{ server ->
             println "deploying to ${server}"
-            
             def name = "tomcat"
             if(name.equals("tomcat")){
               deployToTomcat(server)
@@ -42,11 +40,6 @@ void call(app_env){
               deployToWas(server)
             }
         }
-     
-        } catch(Exception e) {
-            println("Exception: ${e}")
-        }
-        
     }
 }
 
