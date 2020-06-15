@@ -17,16 +17,17 @@ void deployToWas(String server){
 
 @NonCPS
 def getServers(String path) {
-    def jsonSlurper = new JsonSlurper()
+    //def jsonSlurper = new JsonSlurper()
     def file = new File(path)
-    dataval = jsonSlurper.parse(file)
+    //dataval = jsonSlurper.parse(file)
+    dataval = file.text
     println "${dataval}"
     return dataval
 }
 
 void call(app_env){
     run("pwd")
-    //def x = getServers(app_env.serverInfo)
+    def x = getServers(app_env.serverInfo)
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
         run("ls")
