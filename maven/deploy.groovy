@@ -30,7 +30,7 @@ void call(app_env){
         println "${data}"
         app_env.servers.each{ server ->
             println "deploying to ${server}"
-            def name = "tomcat"
+            def name = data[server].type
             if(name.equals("tomcat")){
               deployToTomcat(server)
             }
