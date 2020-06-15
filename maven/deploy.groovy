@@ -4,7 +4,7 @@ import hudson.model.*
 void getServers(){
     def jsonSlurper = new JsonSlurper()
     try{
-        data = jsonSlurper.parse(new File("servers.json"))
+        data = jsonSlurper.parse(new File("/var/lib/jenkins/workspace/jte/servers.json"))
         println "${data}"
     }
     catch(Exception e){
