@@ -1,4 +1,5 @@
 import groovy.json.JsonSlurper
+import hudson.model.*
 
 void getServers(){
     def jsonSlurper = new JsonSlurper()
