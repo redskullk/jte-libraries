@@ -18,6 +18,6 @@ void deployToTomcat(String server){
   println "deploying to tomcat server"
 }
 
-void deployToTomcat(String server){
+void deployToWas(String server){
   println "deploying to tomcat server"
 }
