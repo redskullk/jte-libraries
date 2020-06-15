@@ -15,6 +15,11 @@ void getServers(){
 void call(app_env){
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
+        steps {
+            script {
+                sh "ls -l"
+            }
+        }
         println "ls -l"
         app_env.servers.each{ server ->
             println "deploying to ${server}"
