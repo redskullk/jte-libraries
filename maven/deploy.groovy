@@ -1,4 +1,4 @@
-import groovy.json.JsonSlurper
+import groovy.json.JsonSlurperClassic
 import java.io.File
 
 
@@ -17,7 +17,7 @@ void deployToWas(String server){
 
 
 def getServers(String path) {
-    def jsonSlurper = new JsonSlurper()
+    def jsonSlurper = new JsonSlurperClassic()
     def file = new File(path)
     dataval = jsonSlurper.parse(file)
     //dataval = file.text
