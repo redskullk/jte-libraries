@@ -19,7 +19,7 @@ void deployToWas(String server){
 def getServers(String path) {
     def jsonSlurper = new JsonSlurper()
     def file = new File(path)
-    dataval = new HashMap<>(jsonSlurper.parse(file))
+    dataval = jsonSlurper.parse(file)
     //dataval = file.text
     
     return dataval
@@ -28,8 +28,8 @@ def getServers(String path) {
 void call(app_env){
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
-        def x = getServers(app_env.serverInfo)
-        println "${x}"
+        def data = readJSON file: "${app_env.serverInfo}"
+        println "${data}"
         app_env.servers.each{ server ->
             println "deploying to ${server}"
             def name = "tomcat"
