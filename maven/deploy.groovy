@@ -26,7 +26,7 @@ def getServers(String path) {
 
 void call(app_env){
     run("pwd")
-    def x = getServers(app_env.serverInfo)
+    //def x = getServers(app_env.serverInfo)
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
         run("ls")
