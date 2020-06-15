@@ -13,9 +13,6 @@ void getServers(){
 }
 
 def run(String cmd){
-    steps{
-    
-    }
     println "${cmd}"
 }
 
@@ -25,6 +22,9 @@ void call(app_env){
         println "Deploying to ${app_env.servers.size()} servers !!!"
         println "ls -l"
         run("ls")
+        steps{
+    
+        }
         app_env.servers.each{ server ->
             println "deploying to ${server}"
             def name = "tomcat"
