@@ -13,7 +13,9 @@ void getServers(){
 }
 
 def run(String cmd){
-    script.sh(script: "pwd")
+    steps{
+    
+    }
     println "${cmd}"
 }
 
