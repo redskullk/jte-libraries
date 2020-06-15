@@ -1,18 +1,22 @@
 import groovy.json.JsonSlurper
 
-def jsonSlurper = new JsonSlurper()
-try{
-    data = jsonSlurper.parse(new File("servers.json"))
-    println "${data}"
+void getServers(){
+    def jsonSlurper = new JsonSlurper()
+    try{
+        data = jsonSlurper.parse(new File("servers.json"))
+        println "${data}"
+    }
+    catch(Exception e){
+        println "File not found !"
+        exit 1
+    }
 }
-catch(Exception e){
-    println "File not found !"
-    exit 1
-}
+
 
 void call(app_env){
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
+        getServers()
         app_env.servers.each{ server ->
             println "deploying to ${server}"
             def name = "tomcat"
