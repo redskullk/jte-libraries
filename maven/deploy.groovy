@@ -21,18 +21,15 @@ def getServers(String path) {
     def file = new File(path)
     dataval = jsonSlurper.parse(file)
     //dataval = file.text
-    println "${dataval}"
+    
     return dataval
 }
 
 void call(app_env){
-    stage("getting file"){
-        def x = getServers(app_env.serverInfo)
-    }
-    
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
-        run("ls")
+        def x = getServers(app_env.serverInfo)
+        println "${x}"
         app_env.servers.each{ server ->
             println "deploying to ${server}"
             def name = "tomcat"
