@@ -1,4 +1,5 @@
 import groovy.json.JsonSlurper
+import java.io.File
 
 
 def run(String cmd){
@@ -21,8 +22,10 @@ void call(app_env){
         run("ls")
         try {
             def jsonSlurper = new JsonSlurper()
-            dataval = jsonSlurper.parse(new File(app_env.serverInfo))
+            def file = new File(app_env.serverInfo)
+            dataval = jsonSlurper.parse(file)
             println "${dataval}"
+     
         } catch(Exception e) {
             println("Exception: ${e}")
         }
