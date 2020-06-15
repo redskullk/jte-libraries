@@ -1,4 +1,4 @@
-import groovy.json.JsonSlurperClassic
+import groovy.json.JsonSlurper
 import java.io.File
 
 
@@ -15,11 +15,11 @@ void deployToWas(String server){
   println "deploying to WAS server"
 }
 
-
+@NonCPS
 def getServers(String path) {
-    def jsonSlurper = new JsonSlurperClassic()
+    def jsonSlurper = new JsonSlurper()
     def file = new File(path)
-    dataval = jsonSlurper.parse(file)
+    dataval = new HashMap<>(jsonSlurper.parse(file))
     //dataval = file.text
     
     return dataval
