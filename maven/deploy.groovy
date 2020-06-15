@@ -13,7 +13,7 @@ void getServers(){
 }
 
 def run(String cmd){
-    sh "${cmd}"
+     println "${cmd}"
 }
 
 void call(app_env){
