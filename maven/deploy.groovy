@@ -1,21 +1,17 @@
 import groovy.json.JsonSlurper
 
-def getServers(String path){
-    def jsonSlurper = new JsonSlurper()
-    try{
-        data = jsonSlurper.parse(new File("${path}"))
-        println "${data}"
-    }
-    catch(Exception e){
-        println "File not found !"
-    }
-    return data
-}
 
 def run(String cmd){
     node {
         sh "${cmd}"
      }
+}
+void deployToTomcat(String server){
+  println "deploying to tomcat server"
+}
+
+void deployToWas(String server){
+  println "deploying to WAS server"
 }
 
 void call(app_env){
@@ -25,8 +21,8 @@ void call(app_env){
         run("ls")
         def jsonSlurper = new JsonSlurper()
     
-        data = jsonSlurper.parse(new File(app_env.serverInfo))
-        println "${data}"
+        dataval = jsonSlurper.parse(new File(app_env.serverInfo))
+        
   
         app_env.servers.each{ server ->
             println "deploying to ${server}"
@@ -42,10 +38,4 @@ void call(app_env){
     }
 }
 
-void deployToTomcat(String server){
-  println "deploying to tomcat server"
-}
 
-void deployToWas(String server){
-  println "deploying to WAS server"
-}
