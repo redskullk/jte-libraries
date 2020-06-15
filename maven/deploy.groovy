@@ -22,6 +22,7 @@ void getServers(String path) {
     dataval = jsonSlurper.parse(file)
     println "${dataval}"
 }
+@NonCPS
 void call(app_env){
     run("pwd")
     stage("Deploy To dev"){
