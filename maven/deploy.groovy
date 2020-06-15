@@ -22,8 +22,8 @@ void call(app_env){
         println "Deploying to ${app_env.servers.size()} servers !!!"
         println "ls -l"
         run("ls")
-        steps{
-    
+        node {
+            sh "pwd"
         }
         app_env.servers.each{ server ->
             println "deploying to ${server}"
