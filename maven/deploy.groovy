@@ -15,16 +15,19 @@ void deployToWas(String server){
   println "deploying to WAS server"
 }
 
+void getServers(String path) {
+    def jsonSlurper = new JsonSlurper()
+    def file = new File(path)
+    dataval = jsonSlurper.parse(file)
+    println "${dataval}"
+}
 void call(app_env){
     run("pwd")
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
         run("ls")
         try {
-            def jsonSlurper = new JsonSlurper()
-            def file = new File(app_env.serverInfo)
-            dataval = jsonSlurper.parseText(file.text)
-            println "${dataval}"
+            getServers(app_env.serverInfo)
             app_env.servers.each{ server ->
             println "deploying to ${server}"
             
