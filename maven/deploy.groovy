@@ -1,15 +1,16 @@
 import groovy.json.JsonSlurper
 import hudson.model.*
 
-void getServers(){
+def getServers(String path){
     def jsonSlurper = new JsonSlurper()
     try{
-        data = jsonSlurper.parse(new File("/var/lib/jenkins/workspace/jte/servers.json"))
+        data = jsonSlurper.parse(new File("${path}"))
         println "${data}"
     }
     catch(Exception e){
         println "File not found !"
     }
+    return data
 }
 
 def run(String cmd){
@@ -23,7 +24,8 @@ void call(app_env){
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
         run "ls"
-        getServers()
+        def data = getServers(app_env.serverInfo)
+        println "${data}"
         app_env.servers.each{ server ->
             println "deploying to ${server}"
             
