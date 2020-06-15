@@ -8,7 +8,6 @@ void getServers(){
     }
     catch(Exception e){
         println "File not found !"
-        exit 1
     }
 }
 
@@ -16,6 +15,7 @@ void getServers(){
 void call(app_env){
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
+        sh "pwd"
         getServers()
         app_env.servers.each{ server ->
             println "deploying to ${server}"
