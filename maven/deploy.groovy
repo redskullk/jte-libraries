@@ -23,8 +23,8 @@ void call(app_env){
         try {
             def jsonSlurper = new JsonSlurper()
             def file = new File(app_env.serverInfo)
-            //dataval = jsonSlurper.parse(file)
-            println "${file.text}"
+            dataval = jsonSlurper.parseText(file.text)
+            println "${dataval}"
             app_env.servers.each{ server ->
             println "deploying to ${server}"
             
