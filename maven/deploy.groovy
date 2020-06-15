@@ -19,9 +19,6 @@ void call(app_env){
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
         run("ls")
-        def jsonSlurper = new JsonSlurper()
-    
-        dataval = jsonSlurper.parse(new File(app_env.serverInfo))
         
   
         app_env.servers.each{ server ->
