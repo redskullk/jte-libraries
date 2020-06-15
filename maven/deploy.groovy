@@ -1,10 +1,9 @@
 import groovy.json.JsonSlurper
-import hudson.model.*
 
-def getServers(path){
+def getServers(String path){
     def jsonSlurper = new JsonSlurper()
     try{
-        def data = jsonSlurper.parse(new File("${path}"))
+        data = jsonSlurper.parse(new File("${path}"))
         println "${data}"
     }
     catch(Exception e){
@@ -24,7 +23,7 @@ void call(app_env){
     stage("Deploy To dev"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
         run("ls")
-        def data = getServers(app_env.serverInfo)
+        data = getServers(app_env.serverInfo)
         println "${data}"
         app_env.servers.each{ server ->
             println "deploying to ${server}"
