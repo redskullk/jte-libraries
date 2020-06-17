@@ -5,12 +5,24 @@ def run(String cmd){
         sh "${cmd}"
      }
 }
-void deployToTomcat(server){
-  println "deploying to tomcat server"
+void deployToLinux(server){
+    def remote = [:]
+    remote.name = server.name
+    remote.host = server.host
+    remote.user = server.username
+    remote.password = server.password
+    remote.allowAnyHosts = true
+    sshScript remote: remote, script: server.script_path
 }
 
-void deployToWas(server){
-  println "deploying to WAS server"
+void deployToWindows(server){
+    winRMClient {
+        hostName(server.host)
+        credentialsId(server.credentialsId)
+        sendFile(server.script_path, server.destination, server.configurationName)
+        invokeCommand("powershell ${server.destination}")
+        invokeCommand("powershell rm ${server.destination}")
+     }
 }
 
 @NonCPS
@@ -28,11 +40,11 @@ void call(app_env){
         app_env.servers.each{ server ->
             println "deploying to ${server}"
             def name = data[server].type
-            if(name.equals("tomcat")){
-              deployToTomcat(data[server])
+            if(name.equals("linux")){
+              deployToLinux(data[server])
             }
-            if(name.equals("was")){
-              deployToWas(server)
+            if(name.equals("windows")){
+              deployToWindows(server)
             }
         }
     }
