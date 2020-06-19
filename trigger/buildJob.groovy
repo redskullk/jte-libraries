@@ -1,3 +1,3 @@
-void call(app_env){
-  build '${app_env.jobName}'
+void call(String jobName){
+  build '${jobName}'
 }
