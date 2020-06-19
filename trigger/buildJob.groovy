@@ -1,6 +1,6 @@
-void call(jobname){
+void call(){
   stage('trigger another job'){
-    build(jobname)
+    build 'jte'
   }
   
 }
