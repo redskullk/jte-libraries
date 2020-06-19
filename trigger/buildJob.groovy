@@ -1,3 +1,6 @@
-void call(app_env){
-  build '${app_env.jobName}'
+void call(jobname){
+  stage('trigger another job'){
+    build(jobname)
+  }
+  
 }
