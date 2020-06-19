@@ -34,7 +34,7 @@ def getServers(String path) {
 }
 
 void call(app_env){
-    stage("Deploy To dev"){
+    stage("Deploy To ${app_env.name}"){
         println "Deploying to ${app_env.servers.size()} servers !!!"
         def data =  getServers "${app_env.serverInfo}"
         app_env.servers.each{ server ->
