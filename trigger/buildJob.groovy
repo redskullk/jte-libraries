@@ -1,6 +1,8 @@
 void call(){
   stage('trigger another job'){
-    build 'jte'
+    steps {
+      build 'jte'
+    }
   }
   
 }
