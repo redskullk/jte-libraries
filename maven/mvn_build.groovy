@@ -1,6 +1,6 @@
-void call(app_env){
+void call(){
   stage('Build maven'){
-    app_env.value = '728638'
+    val = '728638'
     println "maven: build()"
   }
   
